@@ -22,18 +22,4 @@ class InstrumentsController < ApplicationController
     end
   end
 
-  # PATCH/PUT /users/1
-  def update
-    if @instrument.update(instrument_params)
-      render json: @instrument
-    else
-      render json: @instrument.errors, status: :unprocessable_entity
-    end
-  end
-
-  # DELETE /users/1
-  def destroy
-    @instrument.destroy
-  end
-
 end
