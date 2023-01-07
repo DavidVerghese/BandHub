@@ -23,16 +23,21 @@ class UsersController < ApplicationController
 
   # PATCH/PUT /users/1
   def update
-    if @user.update(location_params)
-      render json: @user
-    else
-      render json: @user.errors, status: :unprocessable_entity
-    end
+    @user = User.find(params[:id])
+    @user.update!(user_params)
+    render json: @user
   end
 
   # DELETE /users/1
   def destroy
+    @user = User.find(params[:id])
     @user.destroy
+  end
+
+  private 
+
+  def user_params
+    params.permit(:name, :password, :picture_url, :email_address, :genre_id, :instrument_id, :location_id, :looking_for_id)
   end
 
 end

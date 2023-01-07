@@ -43,5 +43,5 @@ end
 end
 
 100.times do 
-  User.create(name: Faker::Name.name, password_digest:'1234', picture_url: Faker::Twitter.user[:profile_image_url_https],email_address: Faker::Internet.email,genre_id:Genre.random.id,instrument_id:Instrument.random.id,location_id: Location.random.id, looking_for_id: Instrument.random.id)
+  User.create(name: Faker::Name.name, password:'1234', picture_url: Faker::Twitter.user[:profile_image_url_https],email_address: Faker::Internet.email,genre_id:Genre.random.id,instrument_id:Instrument.random.id,location_id: Location.random.id, looking_for_id: Instrument.random.id)
 end 
