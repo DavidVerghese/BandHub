@@ -4,7 +4,8 @@ class UsersController < ApplicationController
   def index
     @users = User.all
 
-    render json: @users, include: [:instrument, :genre, :location, :looking_for]
+    render json: @users
+    #render json: @users, include: [:instrument, :genre, :location, :looking_for]
   end
 
   def show
