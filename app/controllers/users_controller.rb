@@ -12,13 +12,8 @@ class UsersController < ApplicationController
   end
 
   def create
-    @user = User.new(user_params)
-
-    if @user.save
-      render json: @user, status: :created
-    else
-      render json: @user.errors, status: :unprocessable_entity
-    end
+    @user = User.create!(user_params)
+    render json: @user, status: :created
   end
 
   # PATCH/PUT /users/1
