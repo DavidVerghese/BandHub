@@ -1,0 +1,25 @@
+# Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  name: MyString
+  picture_url: MyString
+  facebook: MyString
+  instagram: MyString
+  soundcloud: MyString
+  twitter: MyString
+  genre_id: one
+  instrument_id: one
+  location_id: one
+  looking_for_id: one
+
+two:
+  name: MyString
+  picture_url: MyString
+  facebook: MyString
+  instagram: MyString
+  soundcloud: MyString
+  twitter: MyString
+  genre_id: two
+  instrument_id: two
+  location_id: two
+  looking_for_id: two
