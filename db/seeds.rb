@@ -1,45 +1,45 @@
-# This file should contain all the record creation needed to seed the database with its default values.
-# The data can then be loaded with the bin/rails db:seed command (or created alongside the database with db:setup).
-#
-# Examples:
-#
-#   movies = Movie.create([{ name: "Star Wars" }, { name: "Lord of the Rings" }])
-#   Character.create(name: "Luke", movie: movies.first)
+
+Instrument.create(name:'trumpet')
+Instrument.create(name:'tuba')
+Instrument.create(name:'double bass')
+Instrument.create(name:'guitar')
+Instrument.create(name:'bass guitar')
+Instrument.create(name:'singing')
+Instrument.create(name:'rapping')
+Instrument.create(name:'synth')
+Instrument.create(name:'drumset')
+
+Genre.create(name: 'Hip Hop')
+Genre.create(name: 'Country')
+Genre.create(name: 'Flamenco')
+Genre.create(name: 'Classic Rock')
+Genre.create(name: 'Punk Rock')
+Genre.create(name: 'Indie')
+Genre.create(name: 'R&B')
+Genre.create(name: 'Carnatic')
+Genre.create(name: 'Classical')
+Genre.create(name: 'Reggae')
+Genre.create(name: 'Calypso')
+Genre.create(name: 'Funk')
+Genre.create(name: 'House music')
+Genre.create(name: 'Tango')
 
 
-100.times do 
-  Genre.create(name: "#{Faker::Emotion.adjective} #{Faker::Music.genre}".downcase)
-end
-
-100.times do 
-  Instrument.create(
-    name: "#{
-      if rand() < 0.1
-        'bass' 
-    elsif rand() < 0.2
-      'baritone'
-  elsif rand() < 0.3
-    'tenor'
-  elsif rand() < 0.4
-    'contralto'
-  elsif rand() < 0.5
-    'alto'
-  elsif rand() < 0.6
-    'soprano'
-  elsif rand() < 0.7
-    'electric'
-  elsif rand() < 0.8
-    'acoustic'
-    else
-      'steel'
-    end} #{Faker::Music.instrument}".downcase)
-end
-
-100.times do 
-  Location.create(name: "#{Faker::Address.city}, #{Faker::Address.country}")
-end
+Location.create(name: 'London')
+Location.create(name: 'NYC')
+Location.create(name: 'Boston')
+Location.create(name: 'London')
+Location.create(name: 'Atlanta')
+Location.create(name: 'Houston')
+Location.create(name: 'Los Angeles')
+Location.create(name: 'Mexico City')
+Location.create(name: 'Venice')
+Location.create(name: 'Mumbai')
+Location.create(name: 'Oslo')
 
 100.times do 
   user = User.create(name: Faker::Name.name, password:'1234', picture_url: Faker::Twitter.user[:profile_image_url_https],email_address: Faker::Internet.email,genre_id:Genre.random.id,instrument_id:Instrument.random.id,location_id: Location.random.id)
   user.update(looking_for_id: Instrument.random.id)
 end 
+
+User.create(name:'admin',password:'password',picture_url:"password",email_address:"test",genre:Genre.first,instrument:Instrument.first,location:Location.first,looking_for:Instrument.second)
