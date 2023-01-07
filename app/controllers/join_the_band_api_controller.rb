@@ -1,0 +1,2 @@
+class JoinTheBandApiController < ApplicationController
+end
