@@ -34,9 +34,9 @@ ActiveRecord::Schema[7.0].define(version: 2023_01_07_123109) do
     t.string "password_digest"
     t.string "picture_url"
     t.string "email_address"
-    t.integer "genre_id", null: false
-    t.integer "instrument_id", null: false
-    t.integer "location_id", null: false
+    t.integer "genre_id"
+    t.integer "instrument_id"
+    t.integer "location_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.integer "looking_for_id"

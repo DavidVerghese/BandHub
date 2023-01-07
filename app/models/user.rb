@@ -3,10 +3,10 @@ class User < ApplicationRecord
   validates :email_address, presence: true, uniqueness: true
   validates :picture_url, uniqueness: true
 
-  belongs_to :genre
-  belongs_to :instrument
-  belongs_to :location
-  belongs_to :looking_for, class_name: 'Instrument'
+  belongs_to :genre, optional: true
+  belongs_to :instrument, optional: true
+  belongs_to :location, optional: true
+  belongs_to :looking_for, class_name: 'Instrument', optional: true
   has_secure_password
 end
 
