@@ -22,18 +22,4 @@ class LocationsController < ApplicationController
     end
   end
 
-  # PATCH/PUT /users/1
-  def update
-    if @location.update(location_params)
-      render json: @location
-    else
-      render json: @location.errors, status: :unprocessable_entity
-    end
-  end
-
-  # DELETE /users/1
-  def destroy
-    @location.destroy
-  end
-
 end

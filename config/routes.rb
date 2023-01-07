@@ -5,6 +5,6 @@ Rails.application.routes.draw do
   # root "articles#index"
   resources :instruments, only: [:show, :index, :post]
   resources :genres, only: [:show, :index, :post]
-  resources :locations
+  resources :locations, only: [:show, :index, :post]
   resources :users
 end
