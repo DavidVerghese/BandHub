@@ -6,6 +6,8 @@
 #   movies = Movie.create([{ name: "Star Wars" }, { name: "Lord of the Rings" }])
 #   Character.create(name: "Luke", movie: movies.first)
 
+Genre.create(name: "No genre")
+
 100.times do 
   Genre.create(name: "#{Faker::Emotion.adjective} #{Faker::Music.genre}".downcase)
 end
@@ -39,5 +41,5 @@ end
 end
 
 100.times do 
-  User.create(name: Faker::Name.name, password_digest:'1234', picture_url: Faker::Twitter.user[:profile_image_url_https],email_address: Faker::Internet.email,genre_id:Genre.random.id,instrument_id:Instrument.random.id,location_id: Location.random.id)
+  User.create(name: Faker::Name.name, password_digest:'1234', picture_url: Faker::Twitter.user[:profile_image_url_https],email_address: Faker::Internet.email,genre_id:Genre.random.id,instrument_id:Instrument.random.id,location_id: Location.random.id, looking_for_id: Instrument.random.id)
 end 

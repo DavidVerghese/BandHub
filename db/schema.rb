@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2023_01_07_070203) do
+ActiveRecord::Schema[7.0].define(version: 2023_01_07_123109) do
   create_table "genres", force: :cascade do |t|
     t.string "name"
     t.datetime "created_at", null: false
@@ -39,12 +39,15 @@ ActiveRecord::Schema[7.0].define(version: 2023_01_07_070203) do
     t.integer "location_id", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.integer "looking_for_id"
     t.index ["genre_id"], name: "index_users_on_genre_id"
     t.index ["instrument_id"], name: "index_users_on_instrument_id"
     t.index ["location_id"], name: "index_users_on_location_id"
+    t.index ["looking_for_id"], name: "index_users_on_looking_for_id"
   end
 
   add_foreign_key "users", "genres"
   add_foreign_key "users", "instruments"
+  add_foreign_key "users", "instruments", column: "looking_for_id"
   add_foreign_key "users", "locations"
 end
