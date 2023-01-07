@@ -7,4 +7,8 @@ Rails.application.routes.draw do
   resources :genres, only: [:show, :index, :post]
   resources :locations, only: [:show, :index, :post]
   resources :users
+  post '/signup', to: 'users#create'
+  get '/me', to: 'users#show'
+  post '/login', to: 'sessions#create'
+  delete '/logout', to: 'sessions#destroy'
 end
