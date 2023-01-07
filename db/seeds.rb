@@ -12,6 +12,8 @@ Genre.create(name: "No genre")
   Genre.create(name: "#{Faker::Emotion.adjective} #{Faker::Music.genre}".downcase)
 end
 
+Genre.create(name: "N/A")
+
 100.times do 
   Instrument.create(
     name: "#{
