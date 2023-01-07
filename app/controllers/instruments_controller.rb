@@ -13,13 +13,14 @@ class InstrumentsController < ApplicationController
   end
 
   def create
-    @instrument = Instrument.new(instrument_params)
+    @instrument = Instrument.create!(instrument_params)
+    render json: @instrument, status: :created
+  end
 
-    if @instrument.save
-      render json: @instrument, status: :created
-    else
-      render json: @instrument.errors, status: :unprocessable_entity
-    end
+  private
+
+  def instrument_params
+    params.permit(:name)
   end
 
 end

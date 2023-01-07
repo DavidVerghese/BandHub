@@ -22,4 +22,8 @@ class LocationsController < ApplicationController
     end
   end
 
+  def location_params
+    params.permit(:name)
+  end
+
 end
