@@ -14,7 +14,16 @@ class UsersController < ApplicationController
   end
 
   def create
-    @user = User.create!(user_params)
+    @user = User.create!(
+      name: params[:name], 
+      password: params[:password], 
+      picture_url: params[:picture_url], 
+      email_address: params[:email_address], 
+      genre: Genre.find_or_create_by(name:params[:name]), 
+      instrument: Instrument.find_or_create_by(name:params[:instrument]), 
+      location: Location.find_or_create_by(name: params[:location]), 
+      looking_for: Instrument.find_or_create_by(name: params[:looking_for])
+    )
  
     if @user.valid?
       session[:user_id] = @user.id
@@ -38,7 +47,7 @@ class UsersController < ApplicationController
   private 
 
   def user_params
-    params.permit(:name, :password, :picture_url, :email_address, :genre_id, :instrument_id, :location_id, :looking_for_id)
+    params.permit(:name, :password, :picture_url, :email_address, :genre, :instrument, :location, :looking_for)
   end
 
 end
