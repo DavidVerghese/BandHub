@@ -12,7 +12,7 @@ Frontend repo: https://github.com/DavidVerghese/joinTheBand/tree/main/jointheban
 
 ## Installation 
 
-Part 1: This app uses ruby version 3.0.0. If you do not have this version of Ruby, run these commands first. Otherwise skip to part 1
+Part 1: This app uses ruby version 3.0.0. If you do not have this version of Ruby, run these commands first. Otherwise skip to part 2
 
 ``` 
   rvm install 3.0.0
