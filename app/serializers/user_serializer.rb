@@ -5,10 +5,10 @@ class UserSerializer < ActiveModel::Serializer
   # belongs_to :looking_for, class_name: 'Instrument'
   
   # have to have .object ins serializer
-  belongs_to :genre
-  belongs_to :instrument
-  belongs_to :location
-  
+  # belongs_to :genre
+  # belongs_to :instrument
+  # belongs_to :location
+
   def genre_name
     if self.object.genre
       self.object.genre.name

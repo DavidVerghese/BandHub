@@ -28,7 +28,26 @@ class UsersController < ApplicationController
     if @user.valid?
       session[:user_id] = @user.id
       # byebug
-      render json: @user, status: :created
+
+      #id, :name, :picture_url, :email_address, 
+      #:genre_name, :instrument_name, :location_name, 
+      #:looking_for
+      render json: {
+        id:@user.id,
+        name:@user.name,
+        picture_url:@user.picture_url,
+        email_address: @user.email_address,
+        genre_name: @user.genre.name,
+        instrument_name: @user.instrument.name,
+        location_name: @user.location.name, 
+        looking_for: @user.looking_for.name,
+        genre: @user.genre, 
+        instrument: @user.instrument, 
+        location: @user.location, 
+        created_at: @user.created_at, 
+        updated_at: @user.updated_at
+      }, 
+        status: :created
     end
   end
 
