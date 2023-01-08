@@ -19,7 +19,7 @@ class UsersController < ApplicationController
       password: params[:password], 
       picture_url: params[:picture_url], 
       email_address: params[:email_address], 
-      genre: Genre.find_or_create_by(name:params[:name]), 
+      genre: Genre.find_or_create_by(name:params[:genre]), 
       instrument: Instrument.find_or_create_by(name:params[:instrument]), 
       location: Location.find_or_create_by(name: params[:location]), 
       looking_for: Instrument.find_or_create_by(name: params[:looking_for])
@@ -27,6 +27,7 @@ class UsersController < ApplicationController
  
     if @user.valid?
       session[:user_id] = @user.id
+      # byebug
       render json: @user, status: :created
     end
   end
