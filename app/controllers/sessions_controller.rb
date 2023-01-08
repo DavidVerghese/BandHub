@@ -8,7 +8,7 @@ class SessionsController < ApplicationController
         session[:user_id] = user.id
         render json: user, status: :created
     else
-      render json: { errors: ["Username or Password did not match."] }
+      render json: { errors: ["Username or Password did not match any user."] }, status: :unprocessable_entity
     end
   end
   
