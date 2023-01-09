@@ -60,7 +60,15 @@ class UsersController < ApplicationController
   # PATCH/PUT /users/1
   def update
     @user = User.find(params[:id])
-    @user.update!(user_params)
+    @user.update!(
+      name:params[:name],
+      picture_url:params[:picture_url],
+      email_address:params[:email_address],
+      genre_id: Genre.find_or_create_by(name:params[:genre]).id,
+      instrument_id: Instrument.find_or_create_by(name:params[:instrument]).id,
+      location_id: Location.find_or_create_by(name:params[:location]).id,
+      looking_for_id: Instrument.find_or_create_by(name:params[:looking_for]).id
+    )
     render json: @user
   end
 
