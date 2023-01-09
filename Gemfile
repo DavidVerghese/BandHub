@@ -35,10 +35,10 @@ gem "tzinfo-data", platforms: %i[ mingw mswin x64_mingw jruby ]
 gem 'faker'
 gem 'bcrypt'
 gem "fake_person", "~> 1.0"
-
+gem 'encryption'
 # Reduces boot times through caching; required in config/boot.rb
 gem "bootsnap", require: false
-
+gem "lockbox"
 # Use Sass to process CSS
 # gem "sassc-rails"
 

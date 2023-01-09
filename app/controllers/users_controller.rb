@@ -1,5 +1,5 @@
 class UsersController < ApplicationController
-  skip_before_action :authenticate_user, only: [:create, :index, :show]
+  skip_before_action :authenticate_user, only: [:create, :index, :show, :lookup]
 
   def index
     @users = User.all
@@ -10,6 +10,11 @@ class UsersController < ApplicationController
 
   def show
     @user = User.find(session[:user_id])
+    render json: @user, include: [:instrument, :genre, :location, :looking_for]
+  end
+
+  def lookup
+    @user = User.find(params[:user_id])
     render json: @user, include: [:instrument, :genre, :location, :looking_for]
   end
 
@@ -45,7 +50,8 @@ class UsersController < ApplicationController
         instrument: @user.instrument, 
         location: @user.location, 
         created_at: @user.created_at, 
-        updated_at: @user.updated_at
+        updated_at: @user.updated_at,
+        encrypted_id: @user.id
       }, 
         status: :created
     end
@@ -69,5 +75,6 @@ class UsersController < ApplicationController
   def user_params
     params.permit(:name, :password, :picture_url, :email_address, :genre, :instrument, :location, :looking_for)
   end
+
 
 end
