@@ -8,6 +8,7 @@ class UserSerializer < ActiveModel::Serializer
   belongs_to :genre
   belongs_to :instrument
   belongs_to :location
+  belongs_to :looking_for
 
   def genre_name
     if self.object.genre
@@ -28,11 +29,11 @@ class UserSerializer < ActiveModel::Serializer
     end
   end
 
-  def looking_for
-    if self.object.looking_for
-      self.object.looking_for.name
-    end
-  end
+  # def looking_for
+  #   if self.object.looking_for
+  #     self.object.looking_for.name
+  #   end
+  # end
 
 end
 
