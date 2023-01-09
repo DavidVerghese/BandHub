@@ -1,5 +1,5 @@
 class UsersController < ApplicationController
-  skip_before_action :authenticate_user, only: [:create, :index, :show, :lookup]
+  skip_before_action :authenticate_user, only: [:create, :index, :show, :lookup, :update]
 
   def index
     @users = User.all
@@ -69,7 +69,7 @@ class UsersController < ApplicationController
       location_id: Location.find_or_create_by(name:params[:location]).id,
       looking_for_id: Instrument.find_or_create_by(name:params[:looking_for]).id
     )
-    render json: @user
+    render json: @user, include: [:instrument, :genre, :location, :looking_for]
   end
 
   # DELETE /users/1
