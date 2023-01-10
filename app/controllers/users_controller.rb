@@ -1,5 +1,5 @@
 class UsersController < ApplicationController
-  skip_before_action :authenticate_user, only: [:create,  :lookup]
+  skip_before_action :authenticate_user, only: [:create]
 
   def index
     @users = User.all
@@ -13,10 +13,6 @@ class UsersController < ApplicationController
     render json: @user, include: [:instrument, :genre, :location, :looking_for]
   end
 
-  def lookup
-    @user = User.find(params[:user_id])
-    render json: @user, include: [:instrument, :genre, :location, :looking_for]
-  end
 
   def create
     @user = User.create!(
