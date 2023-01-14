@@ -11,7 +11,7 @@ class UsersController < ApplicationController
   def show
     @user = User.find(session[:user_id])
     render json: @user, include: [:instrument, :genre, :location, :looking_for]
-  end
+  end 
 
 
   def create
