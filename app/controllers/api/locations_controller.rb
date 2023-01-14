@@ -1,4 +1,4 @@
-class LocationsController < ApplicationController
+class Api::LocationsController < ApplicationController
 
   skip_before_action :authenticate_user, only: [:index]
   
