@@ -1,4 +1,4 @@
-class WelcomeController < ApplicationController
+class Api::WelcomeController < ApplicationController
   skip_before_action :authenticate_user
   def index 
     render json: {message: "Welcome to my site!"}

@@ -1,0 +1,239 @@
+/* the default styling is for mobile. Below I have media 
+queries to adjust the styling for tablets and computers */
+
+body {
+  font-size: 23px;
+  background-color: #0a0712;
+  color: rgb(237, 235, 190);
+  font-family: 'Ubuntu Mono', monospace;
+  text-align: center;
+  margin: 0px;
+  height: 100%;
+}
+a {
+  color: black;
+  text-decoration: none;
+}
+/* button {
+  background-color: #B82601;
+} */
+footer {
+  padding: 5px;
+  margin: 0px;
+}
+#website-description-text {
+  font-size: 20px;
+}
+header {
+  color: rgb(237, 235, 190);
+  font-size: 60%;
+}
+header a {
+  color: rgb(237, 235, 190);
+}
+img {
+  margin: 0px;
+}
+label {
+  display: block;
+}
+.edit-section {
+  background-color: #062F4f;
+  padding: 10px;
+}
+.edit-section-hide {
+  display: none;
+}
+.edit-section button {
+  margin: 20px 10px 10px 10px;
+}
+#formHeading {
+  padding: 20px;
+}
+.formSection {
+  margin: 0px;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+.formSection input{
+  display: flex;
+  justify-content: center;
+  margin: 0 auto;
+  width: 80%;
+ }
+.formSectionTextBackground {
+  width: 80%;
+  padding: 10px;
+  background-color: #813772;
+}
+#form-pic {
+  width: 200px;
+}
+#form-pic-parent-div {
+  display: block;
+}
+.input-div {
+  display: flex;
+  flex-wrap: wrap;
+  margin-bottom: 10px;
+}
+.input-parent-div {
+  margin: 0 auto;
+  padding: 0px;
+}
+.headerBackground {
+  color: rgb(237, 235, 190);
+  display: flex;
+  flex-wrap: wrap;
+  font-size: 28px;
+  justify-content: space-around;
+}
+.headerBackground p{ 
+  margin: 0px 10px 0px 10px;
+}
+.home {
+  margin: 0px;
+  padding: 30px;
+  color: rgb(237, 235, 190);
+}
+#homePic {
+  width: 100%;
+}
+#home-page-text {
+  background-color: #062f4f;
+  width: 80%;
+  margin: 0 auto;
+}
+#noResultsPic {
+  width: 70%;
+}
+#pictureURLText {
+  font-size: 80%;
+}
+
+
+.profile {
+  margin: 0px;
+  padding: 10px;
+  display: flex;
+  justify-content: center;
+}
+.profilebackground {
+  width: 70%;
+}
+.profile img {
+  width: 80%;
+}
+.search {
+  height: 100px;
+  color: green;
+}
+.searchBarDiv {
+  display: flex;
+  justify-content: space-around;
+  flex-wrap: wrap;
+  align-items: center;
+  margin: 10px;
+  padding: 0px;
+}
+#searchInstructions {
+  font-size: 80%;
+  background-color: peachpuff;
+  color: black;
+  padding: 10px;
+}
+.socialMedia img {
+  width: 50px;
+  height: 50px;
+  border: 1px solid black;
+  padding: 5px;
+  margin: 0px 15px 0px 15px;
+}
+#socialMediaButtons {
+  display: flex;
+  justify-content: flex-end;
+  flex-wrap: wrap;
+  margin-right: 10px;
+}
+#socialMediaButtons {
+  display: flex;
+  justify-content: center;
+  margin-right: 10px;
+}
+#socialMediaButtons button{
+  margin: 10px 20px 10px 20px;
+  background-color: #813772;
+  color: rgb(237, 235, 190);
+}
+
+.socialMediaSection {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: center;
+  background-color: #B82601;
+  margin-top: 20px;
+  
+}
+
+/* for tablets and smaller computer screens*/
+@media (min-width: 550px) {
+  #socialMediaButtons button{
+    color: black;
+  }
+
+  body {
+    font-size: 26px;
+  }
+  button {
+    font-size: 120%;
+  }
+
+  header {
+    font-size: 70%;
+  }
+  .formSectionTextBackground {
+    width: 80%;
+  }
+
+  .profile {
+    /* background-image: url(https://i0.wp.com/doyleleadership.com/wp-content/uploads/2019/02/Audience-2.jpg?fit=5869%2C2367&ssl=1); */
+  }
+  .searchBarDiv {
+    font-size: 100%;
+    margin: 5px;
+  }
+  .searchBarDiv input {
+    margin: 10px;
+  }
+  .socialMedia img {
+    width: 50px;
+    height: 50px;
+    margin: 10px 30px 10px 30px;
+  }
+  #socialMediaButton {
+    margin-right: 110px;
+  }
+}
+
+/* for large computer screens*/
+@media (min-width: 1000px) {
+  body {
+    font-size: 28px;
+  }
+  .formSectionTextBackground {
+    width: 70%;
+  }
+  header {
+    font-size: 100%;
+  }
+  #homePic {
+    width: 60%;
+  }
+  .socialMedia img {
+    width: 70px;
+    height: 70px;
+    margin: 20px 50px 20px 50px;
+  }
+}

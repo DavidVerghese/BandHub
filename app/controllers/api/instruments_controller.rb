@@ -1,4 +1,4 @@
-class InstrumentsController < ApplicationController
+class Api::InstrumentsController < ApplicationController
 
   skip_before_action :authenticate_user, only: [:index]
   

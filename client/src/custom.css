@@ -1,0 +1,94 @@
+body {
+  background-color: black;
+  color: white;
+}
+
+.login-or-signup, .home {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.login h2, .signup h2 {
+  text-align: center;
+  
+}
+.login input, .signup input {
+  display: block;
+}
+
+.profiles {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+.profiles-parent {
+  margin: 20px;
+}
+
+/* homes */
+#turntable-container {
+  position: relative;
+  max-width: 500px;
+  border-radius: 25px;
+}
+#turntable {
+  position: relative;
+  top: 0;
+  left: 0;
+  max-width: 500px;
+}
+#turntable-arm {
+  position:absolute; 
+  top: 15px; 
+  right: 50px; 
+  max-width: 152px;
+  z-index: 1;
+  animation: horizontal-shaking 3s infinite;
+}
+#spin {
+  animation: rotation 6s infinite linear;
+  /* margin: 0px 30px; */
+  max-width: 260px;
+
+  position:absolute; 
+  top: 35px; 
+  left: 100px; 
+  z-index: 0;
+}
+
+@media (max-width: 550px) {
+  #turntable-container {
+    max-width: 200px;
+  }
+  #turntable {
+    max-width: 200px;
+  }
+  #turntable-arm {
+    max-width: 40px;
+  }
+  #spin {
+    max-width: 90px;
+    top: 15px; 
+    left: 50px; 
+  }
+}
+@keyframes rotation {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(359deg);
+  }
+}
+
+@keyframes horizontal-shaking {
+  0% { transform: translateX(0) }
+  25% { transform: translateX(.5px) }
+  50% { transform: translateX(-.5px) }
+  75% { transform: translateX(.5px) }
+  100% { transform: translateX(0) }
+ }
+
+@import 'bootstrap/dist/css/bootstrap.min.css'
+
