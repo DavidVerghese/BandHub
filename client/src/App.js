@@ -21,7 +21,7 @@ function App() {
 
 
   useEffect(() => {
-    fetch(`/me`)
+    fetch(`/api/me`)
     .then(resp => {
         if(resp.ok){
           resp.json().then(data => {
@@ -37,7 +37,7 @@ function App() {
   }, [])
   
   useEffect(() => {
-    fetch(`/users`)
+    fetch(`/api/users`)
       .then((response) => response.json())
       .then((data) => {
         setUsers(data);
@@ -46,7 +46,7 @@ function App() {
 
   const [genres, setGenres] = useState([]);
   useEffect(() => {
-    fetch(`/genres`)
+    fetch(`/api/genres`)
       .then((response) => response.json())
       .then((data) => {
         setGenres(data);
@@ -59,7 +59,7 @@ function App() {
   
 
   useEffect(() => {
-    fetch(`/instruments`)
+    fetch(`/api/instruments`)
       .then((response) => response.json())
       .then((data) => {
         setInstruments(data);
@@ -67,7 +67,7 @@ function App() {
   }, []);
 
   useEffect(() => {
-    fetch(`/locations`)
+    fetch(`/api/locations`)
       .then((response) => response.json())
       .then((data) => {
         setLocations(data);
