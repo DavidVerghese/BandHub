@@ -70,7 +70,7 @@ function EditProfile({ baseURL, user, setUser, genres, setGenres,instruments,set
     e.preventDefault();
   
 
-    fetch(`/users/${user.id}`, {
+    fetch(`/api/users/${user.id}`, {
       method: "DELETE",
       headers: {
         "Content-Type": "application/json",

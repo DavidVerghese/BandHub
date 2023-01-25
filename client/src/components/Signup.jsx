@@ -22,7 +22,7 @@ function Signup({baseURL,genres,setGenres,instruments,setInstruments,locations,s
 
     e.preventDefault();
 
-    fetch(`/signup`, {
+    fetch(`/api/signup`, {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
