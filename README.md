@@ -15,8 +15,8 @@ Frontend repo: https://github.com/DavidVerghese/joinTheBandFrontend
 Part 1: This app uses ruby version 3.0.0. If you do not have this version of Ruby, run these commands first. Otherwise skip to part 2
 
 ``` 
-  rvm install 3.0.0
-  rvm use 3.0.0
+  rvm install 2.7.4
+  rvm use 2.7.4
 ```
 
 Part 2: 
@@ -26,6 +26,13 @@ Part 2:
   rails db:migrate
   rails db:seed
   rails s
+```
+
+In a new tab in the terminal 
+
+``` 
+  npm install --prefix client 
+  npm start --prefix client 
 ```
  
 
