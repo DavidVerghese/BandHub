@@ -13,7 +13,7 @@ function Header({ user, setUser }) {
 
     e.preventDefault();
 
-    fetch(`/logout`, {
+    fetch(`/api/logout`, {
       method: "DELETE",
       headers: {
         "Content-Type": "application/json",
@@ -24,7 +24,7 @@ function Header({ user, setUser }) {
       if (resp.ok) {
         resp.json().then(data => {
           setUser(null);
-          // history.push("/")
+          history.push("/")
         })
       }
     })
@@ -44,7 +44,7 @@ function Header({ user, setUser }) {
     <Container>
       <Link to = "/"> <Navbar.Brand style={{ color: "white" }} href="">Join The Band</Navbar.Brand></Link>
    
-      {/* {!loggedIn ?
+      {!loggedIn ?
         <>
           <Link to="/login"> <Navbar.Brand style={{ color: "white" }} href="login">Log In</Navbar.Brand></Link>
           <Link to="/signup"> <Navbar.Brand style={{ color: "white" }} href="signup">Sign Up</Navbar.Brand></Link>
@@ -53,7 +53,7 @@ function Header({ user, setUser }) {
           <Link to="/edit-profile"><Navbar.Brand style={{ color: "white" }}>Edit Profile</Navbar.Brand></Link>
           <Link to="/profiles"> <Navbar.Brand style={{ color: "white" }}>Profiles</Navbar.Brand></Link>
             </>
-      } */}
+      }
        <Link to="/profiles"> <Navbar.Brand style={{ color: "white" }} href="profiles">Profiles</Navbar.Brand></Link>
        
       <Navbar.Toggle aria-controls="basic-navbar-nav" />

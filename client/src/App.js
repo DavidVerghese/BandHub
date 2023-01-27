@@ -103,7 +103,7 @@ function App() {
          
           {/* the condition used to be user */}
           <Route exact path="/profiles">
-            {true ?  <AllProfiles user={user} baseURL={baseURL} genres={genres} instruments={instruments} locations={locations} users={users}/> : <NoAuthorization webpage={'Profiles'} />}
+            {user ?  <AllProfiles user={user} baseURL={baseURL} genres={genres} instruments={instruments} locations={locations} users={users}/> : <NoAuthorization webpage={'Profiles'} />}
           </Route>
           
           <Route path="/edit-profile">
