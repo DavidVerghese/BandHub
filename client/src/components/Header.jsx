@@ -50,11 +50,11 @@ function Header({ user, setUser }) {
           <Link to="/signup"> <Navbar.Brand style={{ color: "white" }} href="signup">Sign Up</Navbar.Brand></Link>
         </> : <> 
           <Link to="/"> <Navbar.Brand onClick={handleLogout} style={{ color: "white" }} href="signup">Log out</Navbar.Brand></Link>
-          <Link to="/edit-profile"><Navbar.Brand style={{ color: "white" }}>Edit Profile</Navbar.Brand></Link>
+          {/* <Link to="/edit-profile"><Navbar.Brand style={{ color: "white" }}>Edit Profile</Navbar.Brand></Link> */}
           <Link to="/profiles"> <Navbar.Brand style={{ color: "white" }}>Profiles</Navbar.Brand></Link>
             </>
       }
-       <Link to="/profiles"> <Navbar.Brand style={{ color: "white" }} href="profiles">Profiles</Navbar.Brand></Link>
+   
        
       <Navbar.Toggle aria-controls="basic-navbar-nav" />
   </Container>
