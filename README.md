@@ -11,7 +11,7 @@ I would like to create an app for musicians looking to join a band or collaborat
 
 ## Installation 
 
-Part 1: This app uses ruby version 3.0.0. If you do not have this version of Ruby, run these commands first. Otherwise skip to part 2
+Part 1: This app uses ruby version 2.7.4. If you do not have this version of Ruby, run these commands first. Otherwise skip to part 2
 
 ``` 
   rvm install 2.7.4
