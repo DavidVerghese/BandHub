@@ -2,7 +2,7 @@
   "name": "jointheband",
   "version": "0.1.0",
   "private": true,
-  "proxy": "localhost:3000/api",
+  "proxy": "https://localhost:3000/api",
   "dependencies": {
     "@fortawesome/fontawesome-svg-core": "^6.2.1",
     "@fortawesome/free-solid-svg-icons": "^6.2.1",
