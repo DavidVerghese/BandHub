@@ -2,9 +2,12 @@ import { useState } from 'react';
 import Form from 'react-bootstrap/Form';
 import Button from 'react-bootstrap/Button';
 import { useHistory } from "react-router-dom";
+import {  useDispatch } from 'react-redux';
+import { logIn } from '../actions';
 
 function Signup({baseURL,genres,setGenres,instruments,setInstruments,locations,setLocations, users,setUsers, setUser}) {
   let history = useHistory();
+  const dispatch = useDispatch();
   const [signupUser, setSignupUser] = useState({
     username: "",
     password: "",
@@ -57,6 +60,7 @@ function Signup({baseURL,genres,setGenres,instruments,setInstruments,locations,s
             setInstruments([...instruments,data.looking_for])
           }
           setUser(data);
+          dispatch(logIn());
           setUsers([...users, data]);
           
           history.push("/profiles");

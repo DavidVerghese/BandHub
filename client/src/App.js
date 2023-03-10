@@ -112,7 +112,7 @@ function App() {
           </Route>
           
           <Route path="/edit-profile">
-            {isLoggedIn ? <EditProfile baseURL={baseURL}  user={user} setUser={setUser} instruments={instruments} setInstruments={setInstruments} locations={locations} setLocations={setLocations} genres={genres} setGenres={setGenres} users={users} setUsers={setUsers} /> : <NoAuthorization webpage={'Edit Profile'} />}
+            {isLoggedIn && user ? <EditProfile baseURL={baseURL}  user={user} setUser={setUser} instruments={instruments} setInstruments={setInstruments} locations={locations} setLocations={setLocations} genres={genres} setGenres={setGenres} users={users} setUsers={setUsers} /> : <NoAuthorization webpage={'Edit Profile'} />}
           </Route>
           
 
