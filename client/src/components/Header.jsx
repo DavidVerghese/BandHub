@@ -3,10 +3,19 @@ import Nav from 'react-bootstrap/Nav';
 import Navbar from 'react-bootstrap/Navbar';
 import { Link, Redirect, useHistory } from 'react-router-dom';
 import { useEffect, useState } from "react";
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { useSelector } from 'react-redux';
+import {  useDispatch } from 'react-redux';
+import { signOut } from '../actions';
+
+
 // import { faHandsHolding,  } from '@fortawesome/free-solid-svg-icons'
 
 function Header({ user, setUser }) {
+
+  const isLoggedIn = useSelector(state => state.isLoggedIn);
+  const dispatch = useDispatch();
+
   const [loggedIn, setLoggedIn] = useState(false);
   let history = useHistory();
   const handleLogout = e => {
@@ -24,6 +33,7 @@ function Header({ user, setUser }) {
       if (resp.ok) {
         resp.json().then(data => {
           setUser(null);
+          dispatch(signOut());
           history.push("/")
         })
       }
@@ -41,10 +51,12 @@ function Header({ user, setUser }) {
   
 
   return (<Navbar style={{ color: "white" }} expand="lg">
+
+    
     <Container>
       <Link to = "/"> <Navbar.Brand style={{ color: "white" }} href="">Join The Band</Navbar.Brand></Link>
    
-      {!loggedIn ?
+      {!isLoggedIn ?
         <>
           <Link to="/login"> <Navbar.Brand style={{ color: "white" }} href="login">Log In</Navbar.Brand></Link>
           <Link to="/signup"> <Navbar.Brand style={{ color: "white" }} href="signup">Sign Up</Navbar.Brand></Link>
