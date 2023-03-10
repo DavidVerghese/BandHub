@@ -2,12 +2,15 @@ import { useState } from 'react';
 import Form from 'react-bootstrap/Form';
 import Button from 'react-bootstrap/Button';
 import { useHistory, Link } from "react-router-dom";
-import Cookies from 'universal-cookie';
+import { useSelector, useDispatch } from 'react-redux';
+import { logIn } from '../actions';
 
 function Login({baseURL,user,setUser }) {
 
-  const cookies = new Cookies();
   let history = useHistory();
+
+  const isLoggedIn = useSelector(state => state.isLoggedIn);
+  const dispatch = useDispatch();
 
   const [currentUser, setCurrentUser] = useState({ name: 'no user' })
   const [newUser, setNewUser] = useState({
@@ -50,6 +53,7 @@ function Login({baseURL,user,setUser }) {
     
           // cookies.set('user_idd', 's', { path: '/' });
           setUser(data);
+          dispatch(logIn());
           history.push("/profiles");
           // setUser(data);
             // handleCurrentUser(data)

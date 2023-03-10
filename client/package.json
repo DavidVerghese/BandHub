@@ -16,8 +16,10 @@
     "react-autocomplete-hint": "^2.0.0",
     "react-bootstrap": "^2.7.0",
     "react-dom": "^17.0.1",
+    "react-redux": "^8.0.5",
     "react-router-dom": "^5.2.0",
     "react-scripts": "4.0.1",
+    "redux": "^4.2.1",
     "universal-cookie": "^4.0.4",
     "web-vitals": "^0.2.4"
   },

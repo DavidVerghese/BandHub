@@ -3,10 +3,16 @@ import Nav from 'react-bootstrap/Nav';
 import Navbar from 'react-bootstrap/Navbar';
 import { Link, Redirect, useHistory } from 'react-router-dom';
 import { useEffect, useState } from "react";
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+
+import { useSelector } from 'react-redux';
+
 // import { faHandsHolding,  } from '@fortawesome/free-solid-svg-icons'
 
 function Header({ user, setUser }) {
+
+  const isLoggedIn = useSelector(state => state.isLogged);
+
   const [loggedIn, setLoggedIn] = useState(false);
   let history = useHistory();
   const handleLogout = e => {
@@ -41,6 +47,8 @@ function Header({ user, setUser }) {
   
 
   return (<Navbar style={{ color: "white" }} expand="lg">
+
+    
     <Container>
       <Link to = "/"> <Navbar.Brand style={{ color: "white" }} href="">Join The Band</Navbar.Brand></Link>
    
