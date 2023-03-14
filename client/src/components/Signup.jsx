@@ -5,9 +5,12 @@ import { useHistory } from "react-router-dom";
 import {  useDispatch, useSelector } from 'react-redux';
 import { logIn } from '../actions';
 import { addUser } from '../actions';
+import { addInstrument } from '../actions';
 
 function Signup({baseURL,genres,setGenres,instruments,setInstruments,locations,setLocations, users,setUsers, setUser}) {
   let history = useHistory();
+  const instruments2 = useSelector(state => state.instruments);
+  console.log(instruments2);
   const dispatch = useDispatch();
   const [signupUser, setSignupUser] = useState({
     username: "",
@@ -47,11 +50,13 @@ function Signup({baseURL,genres,setGenres,instruments,setInstruments,locations,s
       if (resp.ok) {
         // debugger;
         resp.json().then(data => {
+          const { instrument } = data;
           setSignupErrors([])
           if (!genres.includes(data.genre)) {
             setGenres([...genres,data.genre])
           }
           if (!instruments.includes(data.instrument)) {
+            dispatch(addInstrument(instrument));
             setInstruments([...instruments,data.instrument])
           }
           if (!locations.includes(data.location)) {
@@ -133,19 +138,19 @@ function Signup({baseURL,genres,setGenres,instruments,setInstruments,locations,s
       </Form.Group> : null}
 
       {/* the condition was originally displayInstrumentInput: */}
-      {true ?
+      {!displayInstrumentInput ?
          <Form.Group className="mb-3">
          <Form.Label>Instrument</Form.Label>
           <Form.Select onChange={(e) => { if (e.target.value === 'Other') { setDisplayInstrumentInput(true) } else {setSignupUser({...signupUser,instrument:e.target.value})} }}>
           <option value="" disabled selected>Select your instrument</option>
           {instruments.map((instrument) => <option value={instrument.name}>{instrument.name}</option>)}
-          {/* <option>Other</option> */}
+          <option>Other</option>
           </Form.Select>
           <Form.Text className="text-muted">
-          {/* If you do not see your instrument, select 'Other' */}
+          If you do not see your instrument, select 'Other'
         </Form.Text>
         </Form.Group> : null}
-      {false ? <Form.Group className="mb-3">
+      {displayInstrumentInput ? <Form.Group className="mb-3">
         <Form.Label>Instrument</Form.Label>
         <Form.Control type="text" placeholder="Enter your instrument" name="instrument" value={signupUser.instrument} onChange={handleChange} />
         <Form.Text className="text-muted">
@@ -173,7 +178,7 @@ function Signup({baseURL,genres,setGenres,instruments,setInstruments,locations,s
       </Form.Group> : null}
 
       {/* the condition was originally displayLookingForInput: */}
-      {true ?
+      {displayLookingForInput ?
          <Form.Group className="mb-3">
          <Form.Label>Looking For</Form.Label>
           <Form.Select onChange={(e) => { if (e.target.value === 'Other') { setDisplayLookingForInput(true) } else {setSignupUser({...signupUser,looking_for:e.target.value})} }}>
