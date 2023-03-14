@@ -8,10 +8,11 @@ import Spinner from 'react-bootstrap/Spinner';
 import { useState, useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 
-function AllProfiles({user,genres,instruments,locations}) {
+function AllProfiles({user,genres,locations}) {
 
   const [loggedIn, setLoggedIn] = useState(false);
   const users = useSelector(state => state.users);
+  const instruments = useSelector(state => state.instruments);
 
   const [displayedUsers, setDisplayedUsers] = useState([]);
  

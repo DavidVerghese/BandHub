@@ -1,9 +1,9 @@
 const usersReducer = (state = [], action)=>{
   switch (action.type) {
     case 'ADD':
-      if (Array.isArray(action.payload))
-        return [...state, ...action.payload]
       return [...state, action.payload]
+    case 'GET_USERS': 
+      return action.payload
     default: 
       return state
   }

@@ -11,7 +11,8 @@ import NoAuthorization from './components/NoAuthorization/NoAuthorization';
 import EditProfile from './components/EditProfile';
 import { useSelector, useDispatch } from 'react-redux';
 import { logIn } from './actions';
-import { addUser } from './actions';
+import { getUsers } from './actions';
+import { getInstruments } from './actions';
 
 function App() {
   const [users, setUsers] = useState([]);
@@ -43,7 +44,7 @@ function App() {
     fetch(`/api/users`)
       .then((response) => response.json())
       .then((data) => {
-        dispatch(addUser(data));
+        dispatch(getUsers(data));
         setUsers(data);
       });
   }, [user]);
@@ -65,6 +66,7 @@ function App() {
     fetch(`/api/instruments`)
       .then((response) => response.json())
       .then((data) => {
+        dispatch(getInstruments(data));
         setInstruments(data);
       });
   }, []);
