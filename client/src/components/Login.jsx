@@ -4,7 +4,6 @@ import Button from 'react-bootstrap/Button';
 import { useHistory, Link } from "react-router-dom";
 import { useSelector, useDispatch } from 'react-redux';
 import { logIn } from '../actions';
-
 function Login({baseURL,user,setUser }) {
 
   let history = useHistory();
@@ -50,8 +49,6 @@ function Login({baseURL,user,setUser }) {
           setCurrentUser(data);
           setToggle(!toggle)
    
-    
-          // cookies.set('user_idd', 's', { path: '/' });
           setUser(data);
           dispatch(logIn());
           history.push("/profiles");

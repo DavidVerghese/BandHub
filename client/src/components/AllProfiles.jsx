@@ -5,12 +5,13 @@ import Form from 'react-bootstrap/Form';
 import InputGroup from 'react-bootstrap/InputGroup';
 import Button from 'react-bootstrap/Button';
 import Spinner from 'react-bootstrap/Spinner';
-
 import { useState, useEffect } from 'react';
-function AllProfiles({user,users,genres,instruments,locations}) {
+import { useSelector, useDispatch } from 'react-redux';
+
+function AllProfiles({user,genres,instruments,locations}) {
 
   const [loggedIn, setLoggedIn] = useState(false);
- 
+  const users = useSelector(state => state.users);
 
   const [displayedUsers, setDisplayedUsers] = useState([]);
  
@@ -34,7 +35,7 @@ function AllProfiles({user,users,genres,instruments,locations}) {
   // }, [users]);
 
   function filterUsersByGenre(genre) {
-    const filterResults =  users.filter((user) => user.genre_name === genre);
+    const filterResults = users.filter((user) => user.genre_name === genre);
     if (genre === 'All genres') {
       setDescribeDisplayedUsers(`all users`)
       return users;

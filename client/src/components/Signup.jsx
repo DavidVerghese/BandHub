@@ -2,8 +2,9 @@ import { useState } from 'react';
 import Form from 'react-bootstrap/Form';
 import Button from 'react-bootstrap/Button';
 import { useHistory } from "react-router-dom";
-import {  useDispatch } from 'react-redux';
+import {  useDispatch, useSelector } from 'react-redux';
 import { logIn } from '../actions';
+import { addUser } from '../actions';
 
 function Signup({baseURL,genres,setGenres,instruments,setInstruments,locations,setLocations, users,setUsers, setUser}) {
   let history = useHistory();
@@ -60,6 +61,7 @@ function Signup({baseURL,genres,setGenres,instruments,setInstruments,locations,s
             setInstruments([...instruments,data.looking_for])
           }
           setUser(data);
+          dispatch(addUser(data));
           dispatch(logIn());
           setUsers([...users, data]);
           
@@ -85,8 +87,6 @@ function Signup({baseURL,genres,setGenres,instruments,setInstruments,locations,s
   const [displayLocationInput, setDisplayLocationInput] = useState(false)
   const [displayLookingForInput,setDisplayLookingForInput] = useState(false)
 
-
-  console.log(genres,instruments,locations)
 
   return <div className="login-or-signup">
     
