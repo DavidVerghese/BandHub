@@ -11,6 +11,7 @@ import NoAuthorization from './components/NoAuthorization/NoAuthorization';
 import EditProfile from './components/EditProfile';
 import { useSelector, useDispatch } from 'react-redux';
 import { logIn } from './actions';
+import { addUser } from './actions';
 
 function App() {
   const [users, setUsers] = useState([]);
@@ -20,8 +21,6 @@ function App() {
 
   const isLoggedIn = useSelector(state => state.isLoggedIn);
   const dispatch = useDispatch();
-
-  console.log(isLoggedIn);
 
   useEffect(() => {
     fetch(`/api/me`)
@@ -44,6 +43,7 @@ function App() {
     fetch(`/api/users`)
       .then((response) => response.json())
       .then((data) => {
+        dispatch(addUser(data));
         setUsers(data);
       });
   }, [user]);
