@@ -6,6 +6,7 @@ import {  useDispatch, useSelector } from 'react-redux';
 import { logIn } from '../actions';
 import { addUser } from '../actions';
 import { addInstrument } from '../actions';
+import './Signup.css';
 
 function Signup({baseURL,genres,setGenres,instruments,setInstruments,locations,setLocations, users,setUsers, setUser}) {
   let history = useHistory();
@@ -152,7 +153,7 @@ function Signup({baseURL,genres,setGenres,instruments,setInstruments,locations,s
         <Form.Label>Instrument</Form.Label>
         <Form.Control type="text" placeholder="Enter your instrument" name="instrument" value={signupUser.instrument} onChange={handleChange} />
         <Form.Text className="text-muted">
-          Enter in your instrument
+          <p onClick={() => setDisplayInstrumentInput(false)}  id="return-to-dropdown">Go back to dropdown</p>
         </Form.Text>
       </Form.Group> : null}
 
@@ -184,14 +185,14 @@ function Signup({baseURL,genres,setGenres,instruments,setInstruments,locations,s
           <option>Other</option>
           </Form.Select>
           <Form.Text className="text-muted">
-          If you do not see the instrument you want to collaborate with, select 'Other'
+          If you do not see the instrument you are looking for, select 'Other'
         </Form.Text>
         </Form.Group> : null}
       {displayLookingForInput ? <Form.Group className="mb-3">
         <Form.Label>Looking For</Form.Label>
         <Form.Control type="text" placeholder="Enter the instrument you are looking for" name="looking_for" value={signupUser.looking_for} onChange={handleChange} />
         <Form.Text className="text-muted">
-         {/* Enter the instrument you want to collaborate with */}
+          <p onClick={()=>setDisplayLookingForInput(false) } id="return-to-dropdown">Go back to dropdown</p>
         </Form.Text>
       </Form.Group> : null}
 
