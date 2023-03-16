@@ -87,14 +87,6 @@ function AllProfiles({ user, genres, locations }) {
   function alterDate(UTCString) {
     return Date(UTCString).split(' ').slice(0, 3).join(' ')
   };
-  const [genresPlusAllGenres,setGenresPlusAllGenres] = useState([]);
-  useEffect(() => {
-    setGenresPlusAllGenres([{ name: "All genres" }, ...genresRedux]);
-  }, [genresRedux]);
-  const [instrumentsPlusAllInstruments, setInstrumentsPlusAllInstruments] = useState([]);
-  useEffect(() => {
-    setInstrumentsPlusAllInstruments([{ name: "All instruments" }, ...instruments])
-  }, [instruments]);
   const locationsPlusAllLocations = [{ name: "All locations" }, ...locations]
   
   const [searchTerm,setSearchTerm] = useState('')
@@ -143,7 +135,7 @@ function AllProfiles({ user, genres, locations }) {
 
           
         <Dropdown.Menu>
-          {instrumentsPlusAllInstruments.map((instrument) => <Dropdown.Item onClick={()=>setDisplayedUsers(filterUsersByInstrument(instrument.name))}>{instrument.name}</Dropdown.Item>)}
+          {[{ name: "All instruments" }, ...instruments].map((instrument) => <Dropdown.Item onClick={()=>setDisplayedUsers(filterUsersByInstrument(instrument.name))}>{instrument.name}</Dropdown.Item>)}
           </Dropdown.Menu>
     
         </Dropdown>
@@ -155,7 +147,7 @@ function AllProfiles({ user, genres, locations }) {
       </Dropdown.Toggle>
 
         <Dropdown.Menu>
-          {genresPlusAllGenres.map((genre) => <Dropdown.Item onClick={()=>setDisplayedUsers(filterUsersByGenre(genre.name))}>{genre.name}</Dropdown.Item>)}
+          {[{ name: "All genres" }, ...genresRedux].map((genre) => <Dropdown.Item onClick={()=>setDisplayedUsers(filterUsersByGenre(genre.name))}>{genre.name}</Dropdown.Item>)}
       </Dropdown.Menu>
       </Dropdown>
 
