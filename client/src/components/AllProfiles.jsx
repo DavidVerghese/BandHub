@@ -8,7 +8,7 @@ import Spinner from 'react-bootstrap/Spinner';
 import { useState, useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 
-function AllProfiles({user,genres,locations}) {
+function AllProfiles({ user, genres, locations }) {
 
   const [loggedIn, setLoggedIn] = useState(false);
   const users = useSelector(state => state.users);
@@ -16,10 +16,10 @@ function AllProfiles({user,genres,locations}) {
   const genresRedux = useSelector(state => state.instruments);
   const [displayedUsers, setDisplayedUsers] = useState([]);
  
-   useEffect(() => {
+  useEffect(() => {
   
     setDisplayedUsers(users)
-    }, [users]);
+  }, [users]);
 
   // useEffect(() => {
   //   if (users.length > 0) {
@@ -41,7 +41,7 @@ function AllProfiles({user,genres,locations}) {
       setDescribeDisplayedUsers(`all users`)
       return users;
     }
-    else if (filterResults.length == 0){
+    else if (filterResults.length == 0) {
       alert(`no users found with the genre "${genre}"`);
       setDescribeDisplayedUsers(`all users`);
       return users;
@@ -58,7 +58,7 @@ function AllProfiles({user,genres,locations}) {
       setDescribeDisplayedUsers(`all users`)
       return users;
     }
-    else if (filterResults.length == 0){
+    else if (filterResults.length == 0) {
       alert(`no users found with the instrument "${instrument}"`);
       setDescribeDisplayedUsers(`all users`);
       return users;
@@ -74,7 +74,7 @@ function AllProfiles({user,genres,locations}) {
       setDescribeDisplayedUsers(`all users`)
       return users;
     }
-    else if (filterResults.length == 0){
+    else if (filterResults.length == 0) {
       alert(`no users found with location "${location}"`);
       setDescribeDisplayedUsers(`all users`);
       return users;
@@ -85,10 +85,16 @@ function AllProfiles({user,genres,locations}) {
     }
   }
   function alterDate(UTCString) {
-    return Date(UTCString).split(' ').slice(0,3).join(' ')
-  }
-  const genresPlusAllGenres = [{ name: "All genres" }, ...genresRedux]
-  const instrumentsPlusAllInstruments = [{ name: "All instruments" }, ...instruments]
+    return Date(UTCString).split(' ').slice(0, 3).join(' ')
+  };
+  const [genresPlusAllGenres,setGenresPlusAllGenres] = useState([]);
+  useEffect(() => {
+    setGenresPlusAllGenres([{ name: "All genres" }, ...genresRedux]);
+  }, [genresRedux]);
+  const [instrumentsPlusAllInstruments, setInstrumentsPlusAllInstruments] = useState([]);
+  useEffect(() => {
+    setInstrumentsPlusAllInstruments([{ name: "All instruments" }, ...instruments])
+  }, [instruments]);
   const locationsPlusAllLocations = [{ name: "All locations" }, ...locations]
   
   const [searchTerm,setSearchTerm] = useState('')

@@ -51,6 +51,7 @@ function Signup({baseURL,genres,setGenres,instruments,setInstruments,locations,s
         resp.json().then(data => {
           const { instrument } = data;
           setSignupErrors([])
+          
           if (!genresRedux.includes(data.genre)) {
             dispatch(addGenre(data.genre));
             setGenres([...genres, data.genre])
