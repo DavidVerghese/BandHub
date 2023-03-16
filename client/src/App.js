@@ -10,9 +10,7 @@ import NoMatch from './components/NoMatch/NoMatch';
 import NoAuthorization from './components/NoAuthorization/NoAuthorization';
 import EditProfile from './components/EditProfile';
 import { useSelector, useDispatch } from 'react-redux';
-import { logIn } from './actions';
-import { getUsers } from './actions';
-import { getInstruments } from './actions';
+import { logIn, getUsers, getInstruments, getGenres } from './actions';
 
 function App() {
   const [users, setUsers] = useState([]);
@@ -55,6 +53,7 @@ function App() {
       .then((response) => response.json())
       .then((data) => {
         setGenres(data);
+        dispatch(getGenres(data));
       });
   }, []);
    

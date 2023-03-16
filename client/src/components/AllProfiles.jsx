@@ -13,7 +13,7 @@ function AllProfiles({user,genres,locations}) {
   const [loggedIn, setLoggedIn] = useState(false);
   const users = useSelector(state => state.users);
   const instruments = useSelector(state => state.instruments);
-
+  const genresRedux = useSelector(state => state.instruments);
   const [displayedUsers, setDisplayedUsers] = useState([]);
  
    useEffect(() => {
@@ -87,7 +87,7 @@ function AllProfiles({user,genres,locations}) {
   function alterDate(UTCString) {
     return Date(UTCString).split(' ').slice(0,3).join(' ')
   }
-  const genresPlusAllGenres = [{ name: "All genres" }, ...genres]
+  const genresPlusAllGenres = [{ name: "All genres" }, ...genresRedux]
   const instrumentsPlusAllInstruments = [{ name: "All instruments" }, ...instruments]
   const locationsPlusAllLocations = [{ name: "All locations" }, ...locations]
   
