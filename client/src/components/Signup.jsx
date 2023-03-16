@@ -3,14 +3,14 @@ import Form from 'react-bootstrap/Form';
 import Button from 'react-bootstrap/Button';
 import { useHistory } from "react-router-dom";
 import {  useDispatch, useSelector } from 'react-redux';
-import { logIn } from '../actions';
-import { addUser } from '../actions';
-import { addInstrument } from '../actions';
+import { logIn, addUser, addInstrument, addGenre } from '../actions';
 import './Signup.css';
 
 function Signup({baseURL,genres,setGenres,instruments,setInstruments,locations,setLocations, users,setUsers, setUser}) {
   let history = useHistory();
   const instrumentsRedux = useSelector(state => state.instruments);
+  const genresRedux = useSelector(state => state.genres);
+
   const dispatch = useDispatch();
   const [signupUser, setSignupUser] = useState({
     username: "",
@@ -51,8 +51,9 @@ function Signup({baseURL,genres,setGenres,instruments,setInstruments,locations,s
         resp.json().then(data => {
           const { instrument } = data;
           setSignupErrors([])
-          if (!genres.includes(data.genre)) {
-            setGenres([...genres,data.genre])
+          if (!genresRedux.includes(data.genre)) {
+            dispatch(addGenre(data.genre));
+            setGenres([...genres, data.genre])
           }
           if (!instrumentsRedux.includes(data.instrument)) {
             dispatch(addInstrument(instrument));
@@ -120,21 +121,24 @@ function Signup({baseURL,genres,setGenres,instruments,setInstruments,locations,s
 
       {/* the condition was originally displayGenreInput: */}
       {/* I took out the other option as well*/}
-      {true ?
+      {!displayGenreInput ?
          <Form.Group className="mb-3">
          <Form.Label>Genre</Form.Label>
           <Form.Select onChange={(e) => { if (e.target.value === 'Other') { setDisplayGenreInput(true) } else {setSignupUser({...signupUser,genre:e.target.value})} }}>
           <option value="" disabled selected>Select your genre</option>
-          {genres.map((genre) => <option value={genre.name}>{genre.name}</option>)}
-          {/* <option>Other</option> */}
+          {genresRedux.map((genre) => <option value={genre.name}>{genre.name}</option>)}
+          <option>Other</option>
           </Form.Select>
           <Form.Text className="text-muted">
-          {/* If you do not see your genre, select 'Other' */}
+          If you do not see your genre, select 'Other'
         </Form.Text>
         </Form.Group> : null}
-      {false ? <Form.Group className="mb-3">
+      {displayGenreInput ? <Form.Group className="mb-3">
         <Form.Label>Genre</Form.Label>
-        <Form.Control type="text" placeholder="Enter your genre" name="genre" value={signupUser.genre} onChange={handleChange}/>
+        <Form.Control type="text" placeholder="Enter your genre" name="genre" value={signupUser.genre} onChange={handleChange} />
+        <Form.Text className="text-muted">
+          <p onClick={() => setDisplayGenreInput(false)}  id="return-to-dropdown">Go back to dropdown</p>
+        </Form.Text>
       </Form.Group> : null}
 
       {!displayInstrumentInput ?
@@ -142,7 +146,7 @@ function Signup({baseURL,genres,setGenres,instruments,setInstruments,locations,s
          <Form.Label>Instrument</Form.Label>
           <Form.Select onChange={(e) => { if (e.target.value === 'Other') { setDisplayInstrumentInput(true) } else {setSignupUser({...signupUser,instrument:e.target.value})} }}>
           <option value="" disabled selected>Select your instrument</option>
-          {instruments.map((instrument) => <option value={instrument.name}>{instrument.name}</option>)}
+          {instrumentsRedux.map((instrument) => <option value={instrument.name}>{instrument.name}</option>)}
           <option>Other</option>
           </Form.Select>
           <Form.Text className="text-muted">
@@ -181,7 +185,7 @@ function Signup({baseURL,genres,setGenres,instruments,setInstruments,locations,s
          <Form.Label>Looking For</Form.Label>
           <Form.Select onChange={(e) => { if (e.target.value === 'Other') { setDisplayLookingForInput(true) } else {setSignupUser({...signupUser,looking_for:e.target.value})} }}>
           <option value="" disabled selected>Select the instrument you are looking for</option>
-          {instruments.map((instrument) => <option value={instrument.name}>{instrument.name}</option>)}
+          {instrumentsRedux.map((instrument) => <option value={instrument.name}>{instrument.name}</option>)}
           <option>Other</option>
           </Form.Select>
           <Form.Text className="text-muted">

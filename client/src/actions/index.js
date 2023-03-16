@@ -39,5 +39,16 @@ export const getInstruments = (instruments)=> {
   };
 };
 
+export const addGenre = (genre)=> {
+  return {
+    type: 'ADD_GENRE',
+    payload: genre
+  };
+};
 
-
+export const getGenres = (genres)=> {
+  return {
+    type: 'GET_GENRES',
+    payload: genres
+  };
+};
