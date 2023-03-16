@@ -13,7 +13,6 @@ import { useSelector, useDispatch } from 'react-redux';
 import { logIn, getUsers, getInstruments, getGenres } from './actions';
 
 function App() {
-  const [users, setUsers] = useState([]);
   
   const baseURL = process.env.NODE_ENV === 'production' ?  `https://join-the-band-api.herokuapp.com` : ``
   const [user, setUser] = useState(false);
@@ -43,21 +42,17 @@ function App() {
       .then((response) => response.json())
       .then((data) => {
         dispatch(getUsers(data));
-        setUsers(data);
       });
   }, [user]);
 
-  const [genres, setGenres] = useState([]);
   useEffect(() => {
     fetch(`/api/genres`)
       .then((response) => response.json())
       .then((data) => {
-        setGenres(data);
         dispatch(getGenres(data));
       });
   }, []);
    
-  const [instruments, setInstruments] = useState([]);
   const [locations, setLocations] = useState([]);
 
   
@@ -66,7 +61,6 @@ function App() {
       .then((response) => response.json())
       .then((data) => {
         dispatch(getInstruments(data));
-        setInstruments(data);
       });
   }, []);
 
@@ -90,11 +84,11 @@ function App() {
           <Home user={user} />
         </Route>
         <Route exact path="/login">
-          <Login user={user} setUser={setUser} baseURL={baseURL} instruments={instruments} setInstruments={setInstruments} locations={locations} setLocations={setLocations} genres={genres} setGenres={setGenres} users={users} setUsers={setUsers} />
+          <Login user={user} setUser={setUser} baseURL={baseURL}   />
         </Route>
 
         <Route exact path="/signup">
-          <Signup baseURL={baseURL} instruments={instruments} setInstruments={setInstruments} locations={locations} setLocations={setLocations} genres={genres} setGenres={setGenres} users={users} setUsers={setUsers}setUser={setUser} />
+          <Signup baseURL={baseURL} locations={locations}  setUser={setUser} />
         </Route>
        {/* <Route exact path="/profiles">
             <AllProfiles user={user} baseURL={baseURL} genres={genres} instruments={instruments} locations={locations} users={users}/>
@@ -109,11 +103,11 @@ function App() {
              */}
          
           <Route exact path="/profiles">
-            {isLoggedIn ?  <AllProfiles user={user} baseURL={baseURL} genres={genres} instruments={instruments} locations={locations} users={users}/> : <NoAuthorization webpage={'Profiles'} />}
+            {isLoggedIn ?  <AllProfiles user={user} baseURL={baseURL}  locations={locations}/> : <NoAuthorization webpage={'Profiles'} />}
           </Route>
           
           <Route path="/edit-profile">
-            {isLoggedIn && user ? <EditProfile baseURL={baseURL}  user={user} setUser={setUser} instruments={instruments} setInstruments={setInstruments} locations={locations} setLocations={setLocations} genres={genres} setGenres={setGenres} users={users} setUsers={setUsers} /> : <NoAuthorization webpage={'Edit Profile'} />}
+            {isLoggedIn && user ? <EditProfile baseURL={baseURL}  user={user} setUser={setUser}  /> : <NoAuthorization webpage={'Edit Profile'} />}
           </Route>
           
 
