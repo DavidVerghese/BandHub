@@ -52,3 +52,18 @@ export const getGenres = (genres)=> {
     payload: genres
   };
 };
+
+export const addLocation = (location)=> {
+  return {
+    type: 'ADD_LOCATION',
+    payload: location
+  };
+};
+
+export const getLocations = (locations)=> {
+  return {
+    type: 'GET_LOCATIONS',
+    payload: locations
+  };
+};
+
