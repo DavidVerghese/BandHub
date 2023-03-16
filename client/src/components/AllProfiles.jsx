@@ -8,9 +8,8 @@ import Spinner from 'react-bootstrap/Spinner';
 import { useState, useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 
-function AllProfiles({ user, genres, locations }) {
+function AllProfiles({ user,  locations }) {
 
-  const [loggedIn, setLoggedIn] = useState(false);
   const users = useSelector(state => state.users);
   const instruments = useSelector(state => state.instruments);
   const genresRedux = useSelector(state => state.instruments);
@@ -87,8 +86,7 @@ function AllProfiles({ user, genres, locations }) {
   function alterDate(UTCString) {
     return Date(UTCString).split(' ').slice(0, 3).join(' ')
   };
-  const locationsPlusAllLocations = [{ name: "All locations" }, ...locations]
-  
+
   const [searchTerm,setSearchTerm] = useState('')
 
   function handleSearch() {
@@ -157,7 +155,7 @@ function AllProfiles({ user, genres, locations }) {
       </Dropdown.Toggle>
 
         <Dropdown.Menu>
-          {locationsPlusAllLocations.map((location) => <Dropdown.Item onClick={()=>setDisplayedUsers(filterUsersByLocation(location.name))}>{location.name}</Dropdown.Item>)}
+          {[{ name: "All locations" }, ...locations].map((location) => <Dropdown.Item onClick={()=>setDisplayedUsers(filterUsersByLocation(location.name))}>{location.name}</Dropdown.Item>)}
       </Dropdown.Menu>
         </Dropdown>
         </ButtonGroup>

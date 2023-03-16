@@ -6,7 +6,7 @@ import {  useDispatch, useSelector } from 'react-redux';
 import { logIn, addUser, addInstrument, addGenre } from '../actions';
 import './Signup.css';
 
-function Signup({baseURL,genres,setGenres,instruments,setInstruments,locations,setLocations, users,setUsers, setUser}) {
+function Signup({locations,setLocations, setUser}) {
   let history = useHistory();
   const instrumentsRedux = useSelector(state => state.instruments);
   const genresRedux = useSelector(state => state.genres);
@@ -54,23 +54,19 @@ function Signup({baseURL,genres,setGenres,instruments,setInstruments,locations,s
           
           if (!genresRedux.includes(data.genre)) {
             dispatch(addGenre(data.genre));
-            setGenres([...genres, data.genre])
           }
           if (!instrumentsRedux.includes(data.instrument)) {
             dispatch(addInstrument(instrument));
-            setInstruments([...instruments,data.instrument])
           }
           if (!locations.includes(data.location)) {
             setLocations([...locations,data.location])
           }
           if (!instrumentsRedux.includes(data.looking_for)) {
             dispatch(addInstrument(data.looking_for));
-            setInstruments([...instruments,data.looking_for])
           }
           setUser(data);
           dispatch(addUser(data));
           dispatch(logIn());
-          setUsers([...users, data]);
           
           history.push("/profiles");
           
