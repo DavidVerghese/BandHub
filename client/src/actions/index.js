@@ -39,7 +39,7 @@ export const getInstruments = (instruments)=> {
   };
 };
 
-export const addGenre = (genre)=> {
+export const addGenre = (genre) => {
   return {
     type: 'ADD_GENRE',
     payload: genre

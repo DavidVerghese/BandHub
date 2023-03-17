@@ -49,20 +49,23 @@ function Signup({setUser}) {
     }).then(resp => {
       if (resp.ok) {
         resp.json().then(data => {
+          debugger;
           const { instrument } = data;
           setSignupErrors([]);
-          if (!genresRedux.includes(data.genre)) {
+          if (!genresRedux.find((genre)=>genre.name === data.genre.name)) {
             dispatch(addGenre(data.genre));
           }
-          if (!instrumentsRedux.includes(data.instrument)) {
+          if (!instrumentsRedux.find((instrument) => instrument.name === data.instrument.name)) {
+            console.log(data.instrument, instrumentsRedux, instrumentsRedux.find((instrument) => instrument.name === data.instrument));
             dispatch(addInstrument(instrument));
           }
-          if (!locationsRedux.includes(data.location)) {
+          if (!locationsRedux.find((location)=>location.name === data.location.name)) {
             dispatch(addLocation(data.location));
           }
-          if (!instrumentsRedux.includes(data.looking_for) && data.looking_for.name !== data.instrument.name) {
+          if (!instrumentsRedux.find((instrument)=>instrument.name === data.looking_for.name) && data.looking_for.name !== data.instrument.name) {
             dispatch(addInstrument(data.looking_for));
-          }
+          };
+
           setUser(data);
           dispatch(addUser(data));
           dispatch(logIn());
