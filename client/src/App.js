@@ -10,7 +10,7 @@ import NoMatch from './components/NoMatch/NoMatch';
 import NoAuthorization from './components/NoAuthorization/NoAuthorization';
 import EditProfile from './components/EditProfile';
 import { useSelector, useDispatch } from 'react-redux';
-import { logIn, getUsers, getInstruments, getGenres } from './actions';
+import { logIn, getUsers, getInstruments, getGenres, getLocations } from './actions';
 
 function App() {
   
@@ -68,6 +68,7 @@ function App() {
     fetch(`/api/locations`)
       .then((response) => response.json())
       .then((data) => {
+        dispatch(getLocations(data));
         setLocations(data);
       });
   }, []);

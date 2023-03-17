@@ -12,7 +12,8 @@ function AllProfiles({ user,  locations }) {
 
   const users = useSelector(state => state.users);
   const instruments = useSelector(state => state.instruments);
-  const genresRedux = useSelector(state => state.instruments);
+  const genresRedux = useSelector(state => state.genres);
+  const locationsRedux = useSelector(state => state.locations);
   const [displayedUsers, setDisplayedUsers] = useState([]);
  
   useEffect(() => {
@@ -155,7 +156,7 @@ function AllProfiles({ user,  locations }) {
       </Dropdown.Toggle>
 
         <Dropdown.Menu>
-          {[{ name: "All locations" }, ...locations].map((location) => <Dropdown.Item onClick={()=>setDisplayedUsers(filterUsersByLocation(location.name))}>{location.name}</Dropdown.Item>)}
+          {[{ name: "All locations" }, ...locationsRedux].map((location) => <Dropdown.Item onClick={()=>setDisplayedUsers(filterUsersByLocation(location.name))}>{location.name}</Dropdown.Item>)}
       </Dropdown.Menu>
         </Dropdown>
         </ButtonGroup>
