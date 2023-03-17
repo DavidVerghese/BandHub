@@ -49,7 +49,6 @@ function Signup({setUser}) {
     }).then(resp => {
       if (resp.ok) {
         resp.json().then(data => {
-          debugger;
           const { instrument } = data;
           setSignupErrors([]);
           if (!genresRedux.find((genre)=>genre.name === data.genre.name)) {
