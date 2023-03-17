@@ -52,9 +52,6 @@ function App() {
         dispatch(getGenres(data));
       });
   }, []);
-   
-  const [locations, setLocations] = useState([]);
-
   
   useEffect(() => {
     fetch(`/api/instruments`)
@@ -69,7 +66,6 @@ function App() {
       .then((response) => response.json())
       .then((data) => {
         dispatch(getLocations(data));
-        setLocations(data);
       });
   }, []);
 
@@ -89,7 +85,7 @@ function App() {
         </Route>
 
         <Route exact path="/signup">
-          <Signup baseURL={baseURL} locations={locations}  setUser={setUser} />
+          <Signup baseURL={baseURL}  setUser={setUser} />
         </Route>
        {/* <Route exact path="/profiles">
             <AllProfiles user={user} baseURL={baseURL} genres={genres} instruments={instruments} locations={locations} users={users}/>
@@ -104,7 +100,7 @@ function App() {
              */}
          
           <Route exact path="/profiles">
-            {isLoggedIn ?  <AllProfiles user={user} baseURL={baseURL}  locations={locations}/> : <NoAuthorization webpage={'Profiles'} />}
+            {isLoggedIn ?  <AllProfiles user={user} baseURL={baseURL} /> : <NoAuthorization webpage={'Profiles'} />}
           </Route>
           
           <Route path="/edit-profile">

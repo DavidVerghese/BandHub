@@ -6,7 +6,7 @@ import {  useDispatch, useSelector } from 'react-redux';
 import { logIn, addUser, addInstrument, addGenre, addLocation } from '../actions';
 import './Signup.css';
 
-function Signup({locations,setLocations, setUser}) {
+function Signup({setUser}) {
   let history = useHistory();
   const instrumentsRedux = useSelector(state => state.instruments);
   const genresRedux = useSelector(state => state.genres);
@@ -164,7 +164,7 @@ function Signup({locations,setLocations, setUser}) {
          <Form.Label>Location</Form.Label>
           <Form.Select onChange={(e) => { if (e.target.value === 'Other') { setDisplayLocationInput(true) } else {setSignupUser({...signupUser,location:e.target.value})} }}>
           <option value="" disabled selected>Select your location</option>
-          {locations.map((location) => <option value={location.name}>{location.name}</option>)}
+          {locationsRedux.map((location) => <option value={location.name}>{location.name}</option>)}
           <option>Other</option>
           </Form.Select>
           <Form.Text className="text-muted">

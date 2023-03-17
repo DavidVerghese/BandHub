@@ -8,7 +8,7 @@ import Spinner from 'react-bootstrap/Spinner';
 import { useState, useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 
-function AllProfiles({ user,  locations }) {
+function AllProfiles({ user }) {
 
   const users = useSelector(state => state.users);
   const instruments = useSelector(state => state.instruments);
