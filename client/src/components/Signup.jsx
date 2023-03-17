@@ -50,8 +50,8 @@ function Signup({locations,setLocations, setUser}) {
       if (resp.ok) {
         resp.json().then(data => {
           const { instrument } = data;
-          setSignupErrors([])
-          
+          setSignupErrors([]);
+          console.log(instrumentsRedux);
           if (!genresRedux.includes(data.genre)) {
             dispatch(addGenre(data.genre));
           }
@@ -61,8 +61,7 @@ function Signup({locations,setLocations, setUser}) {
           if (!locationsRedux.includes(data.location)) {
             dispatch(addLocation(data.location));
           }
-          if (!instrumentsRedux.includes(data.looking_for) && data.looking_for !== data.instrument) {
-            debugger;
+          if (!instrumentsRedux.includes(data.looking_for) && data.looking_for.name !== data.instrument.name) {
             dispatch(addInstrument(data.looking_for));
           }
           setUser(data);
