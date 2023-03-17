@@ -1,8 +1,8 @@
 import loggedReducer from './isLoggedIn';
 import usersReducer from './users.js';
 import instrumentsReducer from './instruments.js';
-import genresReducer from './genresReducer';
-import locationsReducer from './locationsReducer';
+import genresReducer from './genres';
+import locationsReducer from './locations';
 import { combineReducers } from 'redux';
 
 const allReducers = combineReducers({

@@ -10,7 +10,7 @@ import NoMatch from './components/NoMatch/NoMatch';
 import NoAuthorization from './components/NoAuthorization/NoAuthorization';
 import EditProfile from './components/EditProfile';
 import { useSelector, useDispatch } from 'react-redux';
-import { logIn, getUsers, getInstruments, getGenres } from './actions';
+import { logIn, getUsers, getInstruments, getGenres, getLocations } from './actions';
 
 function App() {
   
@@ -52,9 +52,6 @@ function App() {
         dispatch(getGenres(data));
       });
   }, []);
-   
-  const [locations, setLocations] = useState([]);
-
   
   useEffect(() => {
     fetch(`/api/instruments`)
@@ -68,7 +65,7 @@ function App() {
     fetch(`/api/locations`)
       .then((response) => response.json())
       .then((data) => {
-        setLocations(data);
+        dispatch(getLocations(data));
       });
   }, []);
 
@@ -88,7 +85,7 @@ function App() {
         </Route>
 
         <Route exact path="/signup">
-          <Signup baseURL={baseURL} locations={locations}  setUser={setUser} />
+          <Signup baseURL={baseURL}  setUser={setUser} />
         </Route>
        {/* <Route exact path="/profiles">
             <AllProfiles user={user} baseURL={baseURL} genres={genres} instruments={instruments} locations={locations} users={users}/>
@@ -103,7 +100,7 @@ function App() {
              */}
          
           <Route exact path="/profiles">
-            {isLoggedIn ?  <AllProfiles user={user} baseURL={baseURL}  locations={locations}/> : <NoAuthorization webpage={'Profiles'} />}
+            {isLoggedIn ?  <AllProfiles user={user} baseURL={baseURL} /> : <NoAuthorization webpage={'Profiles'} />}
           </Route>
           
           <Route path="/edit-profile">

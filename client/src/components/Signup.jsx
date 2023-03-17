@@ -3,14 +3,14 @@ import Form from 'react-bootstrap/Form';
 import Button from 'react-bootstrap/Button';
 import { useHistory } from "react-router-dom";
 import {  useDispatch, useSelector } from 'react-redux';
-import { logIn, addUser, addInstrument, addGenre } from '../actions';
+import { logIn, addUser, addInstrument, addGenre, addLocation } from '../actions';
 import './Signup.css';
 
-function Signup({locations,setLocations, setUser}) {
+function Signup({setUser}) {
   let history = useHistory();
   const instrumentsRedux = useSelector(state => state.instruments);
   const genresRedux = useSelector(state => state.genres);
-
+  const locationsRedux = useSelector(state => state.locations);
   const dispatch = useDispatch();
   const [signupUser, setSignupUser] = useState({
     username: "",
@@ -50,18 +50,18 @@ function Signup({locations,setLocations, setUser}) {
       if (resp.ok) {
         resp.json().then(data => {
           const { instrument } = data;
-          setSignupErrors([])
-          
+          setSignupErrors([]);
+          console.log(instrumentsRedux);
           if (!genresRedux.includes(data.genre)) {
             dispatch(addGenre(data.genre));
           }
           if (!instrumentsRedux.includes(data.instrument)) {
             dispatch(addInstrument(instrument));
           }
-          if (!locations.includes(data.location)) {
-            setLocations([...locations,data.location])
+          if (!locationsRedux.includes(data.location)) {
+            dispatch(addLocation(data.location));
           }
-          if (!instrumentsRedux.includes(data.looking_for)) {
+          if (!instrumentsRedux.includes(data.looking_for) && data.looking_for.name !== data.instrument.name) {
             dispatch(addInstrument(data.looking_for));
           }
           setUser(data);
@@ -158,23 +158,25 @@ function Signup({locations,setLocations, setUser}) {
         </Form.Text>
       </Form.Group> : null}
 
-      {/* the condition was originally displayLocationInput: */}
    
-      {true ?
+      {!displayLocationInput ?
          <Form.Group className="mb-3">
          <Form.Label>Location</Form.Label>
           <Form.Select onChange={(e) => { if (e.target.value === 'Other') { setDisplayLocationInput(true) } else {setSignupUser({...signupUser,location:e.target.value})} }}>
           <option value="" disabled selected>Select your location</option>
-          {locations.map((location) => <option value={location.name}>{location.name}</option>)}
-          {/* <option>Other</option> */}
+          {locationsRedux.map((location) => <option value={location.name}>{location.name}</option>)}
+          <option>Other</option>
           </Form.Select>
           <Form.Text className="text-muted">
-          {/* If you do not see your location, select 'Other' */}
+          If you do not see your location, select 'Other'
         </Form.Text>
         </Form.Group> : null}
-      {false ? <Form.Group className="mb-3">
+      {displayLocationInput ? <Form.Group className="mb-3">
         <Form.Label>Location</Form.Label>
         <Form.Control type="text" placeholder="Enter your location" name="location" value={signupUser.location} onChange={handleChange}/>
+        <Form.Text className="text-muted">
+          <p onClick={()=>setDisplayLocationInput(false) } id="return-to-dropdown">Go back to dropdown</p>
+        </Form.Text>
       </Form.Group> : null}
 
       {!displayLookingForInput ?
