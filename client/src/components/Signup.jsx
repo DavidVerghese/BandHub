@@ -51,7 +51,6 @@ function Signup({setUser}) {
         resp.json().then(data => {
           const { instrument } = data;
           setSignupErrors([]);
-          console.log(instrumentsRedux);
           if (!genresRedux.includes(data.genre)) {
             dispatch(addGenre(data.genre));
           }
