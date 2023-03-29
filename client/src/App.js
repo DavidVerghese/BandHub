@@ -1,14 +1,14 @@
 import './App.css';
 import { useEffect, useState } from "react";
 import { Route, Switch, Link } from "react-router-dom";
-import Home from "./components/Home.jsx"
-import AllProfiles from "./components/AllProfiles.jsx"
-import Login from './components/Login';
-import Signup from './components/Signup';
-import Header from './components/Header';
-import NoMatch from './components/NoMatch/NoMatch';
-import NoAuthorization from './components/NoAuthorization/NoAuthorization';
-import EditProfile from './components/EditProfile';
+import Home from "./screens/Home/Home.jsx"
+import AllProfiles from "./screens/AllProfiles/AllProfiles.jsx"
+import Login from './screens/Login/Login';
+import Signup from './screens/SignUp/Signup';
+import Header from './components/Header/Header';
+import NoMatch from './screens/NoMatch/NoMatch';
+import NoAuthorization from './screens/NoAuthorization/NoAuthorization';
+import EditProfile from './screens/EditProfile/EditProfile';
 import { useSelector, useDispatch } from 'react-redux';
 import { logIn, getUsers, getInstruments, getGenres, getLocations } from './actions';
 
