@@ -53,7 +53,6 @@ function EditProfileForm({ user, setUser }) {
 
     
   }
-
   return (
     <Form onSubmit={handleSubmit}>
       <Form.Group controlId="name">
@@ -73,7 +72,7 @@ function EditProfileForm({ user, setUser }) {
 
       <Form.Group controlId="genre">
       <Form.Label>Genre:</Form.Label>
-      <Form.Select aria-label="Default select example" onChange={(event) => setGenre(event.target.value)}>
+        <Form.Select value={genre} aria-label="Default select example" onChange={(event) => setGenre(event.target.value)}>
       {genres.map((genre) => (
         <option key={genre.name} value={genre.name}>{genre.name}</option>
       ))}
@@ -82,7 +81,7 @@ function EditProfileForm({ user, setUser }) {
 
       <Form.Group controlId="instrument">
         <Form.Label>Instrument:</Form.Label>
-        <Form.Select aria-label="Default select example"  onChange={(event) => setInstrument(event.target.value)}>
+        <Form.Select value={instrument} aria-label="Default select example"  onChange={(event) => setInstrument(event.target.value)}>
         {instruments.map((instrument) => (
         <option key={instrument.name} value={instrument.name}>{instrument.name}</option>
       ))}
@@ -91,7 +90,7 @@ function EditProfileForm({ user, setUser }) {
 
       <Form.Group controlId="location">
         <Form.Label>Location:</Form.Label>
-        <Form.Select onChange={(event) => setLocation(event.target.value)}>
+        <Form.Select value={location} onChange={(event) => setLocation(event.target.value)}>
           {locations.map((location) => (
           <option key={location.name}>{location.name}</option>
       ))}
@@ -100,7 +99,7 @@ function EditProfileForm({ user, setUser }) {
 
       <Form.Group controlId="lookingFor">
         <Form.Label>Looking For:</Form.Label>
-        <Form.Select aria-label="Default select example"  onChange={(event) => setLookingFor(event.target.value)}>
+        <Form.Select value={lookingFor} aria-label="Default select example"  onChange={(event) => setLookingFor(event.target.value)}>
         {instruments.map((instrument) => (
         <option key={instrument.name} value={instrument.name}>{instrument.name}</option>
       ))}
