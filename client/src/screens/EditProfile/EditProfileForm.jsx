@@ -30,12 +30,12 @@ function EditProfileForm({ user, setUser }) {
       looking_for: lookingFor,
     };
     
-    fetch(`/api/${user.id}`, {
+    fetch(`/api/users/${user.id}`, {
       method: 'PATCH',
       headers: {
         'Content-Type': 'application/json'
       },
-      body: JSON.stringify({ updatedUser })
+      body: JSON.stringify(updatedUser)
     })
     .then(response => {
       if (!response.ok) {

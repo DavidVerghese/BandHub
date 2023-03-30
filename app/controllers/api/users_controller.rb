@@ -40,6 +40,7 @@ class Api::UsersController < ApplicationController
 
   # PATCH/PUT /users/1
   def update
+   
     @user = User.find(params[:id])
     @user.update!(
       name:params[:name],
@@ -50,6 +51,7 @@ class Api::UsersController < ApplicationController
       location_id: Location.find_or_create_by(name:params[:location]).id,
       looking_for_id: Instrument.find_or_create_by(name:params[:looking_for]).id
     )
+    # byebug
     render json: @user, include: [:instrument, :genre, :location, :looking_for]
   end
 
