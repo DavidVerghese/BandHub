@@ -85,6 +85,9 @@ function Header({ user, setUser }) {
             <Link to="/profiles">
               {" "}
               <Navbar.Brand style={{ color: "white" }}>Profiles</Navbar.Brand>
+              </Link>
+              <Link to="/edit-profile">
+              <Navbar.Brand style={{ color: "white" }}>Edit Profile</Navbar.Brand>
             </Link>
           </>
         )}
