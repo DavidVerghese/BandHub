@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { Form, Button } from 'react-bootstrap';
 import { useSelector } from 'react-redux';
+import './EditProfileForm.css';
 
 function EditProfileForm({ user, setUser }) {
 
@@ -54,6 +55,7 @@ function EditProfileForm({ user, setUser }) {
     
   }
   return (
+    <div className="edit-profile-form">
     <Form onSubmit={handleSubmit}>
       <Form.Group controlId="name">
         <Form.Label>Name:</Form.Label>
@@ -107,7 +109,8 @@ function EditProfileForm({ user, setUser }) {
       </Form.Group>
 
       <Button variant="primary" type="submit">Save</Button>
-    </Form>
+      </Form>
+    </div>
   );
 }
 
