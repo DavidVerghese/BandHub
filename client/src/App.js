@@ -9,6 +9,7 @@ import Header from './components/Header/Header';
 import NoMatch from './screens/NoMatch/NoMatch';
 import NoAuthorization from './screens/NoAuthorization/NoAuthorization';
 import EditProfile from './screens/EditProfile/EditProfile';
+import EditProfileForm from './screens/EditProfile/EditProfileForm';
 import { useSelector, useDispatch } from 'react-redux';
 import { logIn, getUsers, getInstruments, getGenres, getLocations } from './actions';
 
@@ -104,7 +105,7 @@ function App() {
           </Route>
           
           <Route path="/edit-profile">
-            {isLoggedIn && user ? <EditProfile baseURL={baseURL}  user={user} setUser={setUser}  /> : <NoAuthorization webpage={'Edit Profile'} />}
+            {isLoggedIn && user ? <EditProfileForm  user={user} setUser={setUser}  /> : <NoAuthorization webpage={'Edit Profile'} />}
           </Route>
           
 
