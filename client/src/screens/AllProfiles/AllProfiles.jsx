@@ -15,9 +15,6 @@ function AllProfiles({ user }) {
   const genresRedux = useSelector(state => state.genres);
   const locationsRedux = useSelector(state => state.locations);
   const [displayedUsers, setDisplayedUsers] = useState([]);
-  useEffect(() => {
-    console.log(genresRedux);
-  }, []);
   
   useEffect(() => {
   

@@ -42,7 +42,6 @@ function Login({ baseURL, user, setUser }) {
       if (resp.ok) {
         resp.json().then((data) => {
           setLoginErrors([]);
-          console.log(data);
           setCurrentUser(data);
           setToggle(!toggle);
 

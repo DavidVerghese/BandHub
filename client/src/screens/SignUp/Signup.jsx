@@ -63,13 +63,6 @@ function Signup({ setUser }) {
               (instrument) => instrument.name === data.instrument.name
             )
           ) {
-            console.log(
-              data.instrument,
-              instrumentsRedux,
-              instrumentsRedux.find(
-                (instrument) => instrument.name === data.instrument
-              )
-            );
             dispatch(addInstrument(instrument));
           }
           if (
