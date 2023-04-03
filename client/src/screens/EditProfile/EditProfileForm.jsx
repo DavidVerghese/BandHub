@@ -17,6 +17,7 @@ function EditProfileForm({ user, setUser }) {
   const [location, setLocation] = useState(user.location.name);
   const [lookingFor, setLookingFor] = useState(user.looking_for.name);
 
+  console.log(user);
   function handleSubmit(event) {
     event.preventDefault();
 
