@@ -6,6 +6,7 @@ import AllProfiles from "./screens/AllProfiles/AllProfiles.jsx"
 import Login from './screens/Login/Login';
 import Signup from './screens/SignUp/Signup';
 import Header from './components/Header/Header';
+import Header2 from './components/Header2';
 import NoMatch from './screens/NoMatch/NoMatch';
 import NoAuthorization from './screens/NoAuthorization/NoAuthorization';
 import EditProfileForm from './screens/EditProfile/EditProfileForm';
@@ -74,7 +75,8 @@ function App() {
         {/* <button onClick={() => dispatch(signIn())}>Sign In</button>
         <button onClick={() => dispatch(signOut())}>Sign Out</button>
          */}
-        <Header user={user} setUser={setUser} />
+        {/* <Header user={user} setUser={setUser} /> */}
+        <Header2 user={user} setUser={setUser} />
       <Switch>
       <Route exact path="/">
           <Home user={user} />
