@@ -26,11 +26,18 @@ function EditProfileForm({ user, setUser }) {
   useEffect(() => {
     const { genre, instrument, location, looking_for } = user;
 
-    setGenre(genre.name);
-    setInstrument(instrument.name);
-    setLocation(location.name);
-    setLookingFor(looking_for.name);
-
+    if (genre && genre.name) {
+      setGenre(genre.name);
+    }
+    if (instrument && instrument.name) {
+      setInstrument(instrument.name);
+    }
+    if (location && location.name) {
+      setLocation(location.name);
+    };
+    if (looking_for && looking_for.name) {
+      setLookingFor(looking_for.name);
+    }
   }, [user]);
 
   console.log(user);
