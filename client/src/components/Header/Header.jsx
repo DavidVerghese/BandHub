@@ -1,21 +1,22 @@
-import Container from "react-bootstrap/Container";
-import Nav from "react-bootstrap/Nav";
-import Navbar from "react-bootstrap/Navbar";
-import { Link, Redirect, useHistory } from "react-router-dom";
-import { useEffect, useState } from "react";
+import React, { useState } from "react";
+import { Link,  useHistory } from "react-router-dom";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faBars } from "@fortawesome/free-solid-svg-icons";
+import { faUser, faSignOutAlt, faEdit } from "@fortawesome/free-solid-svg-icons";
+import { Navbar, Nav } from "react-bootstrap";
+import './Header.css';
 import { useSelector } from "react-redux";
 import { useDispatch } from "react-redux";
 import { signOut } from "../../actions";
 
-// import { faHandsHolding,  } from '@fortawesome/free-solid-svg-icons'
-
-function Header({ user, setUser }) {
+const Header = ({ user, setUser }) => {
   const isLoggedIn = useSelector((state) => state.isLoggedIn);
   const dispatch = useDispatch();
-
   const [loggedIn, setLoggedIn] = useState(false);
   let history = useHistory();
+
+  const [showMenu, setShowMenu] = useState(false);
+
   const handleLogout = (e) => {
     e.preventDefault();
 
@@ -36,65 +37,45 @@ function Header({ user, setUser }) {
     });
   };
 
-  useEffect(() => {
-    if (user) {
-      setLoggedIn(true);
-    } else {
-      setLoggedIn(false);
-    }
-  }, [user]);
+  const toggleMenu = () => {
+    console.log(showMenu);
+    setShowMenu(!showMenu);
+  };
 
   return (
-    <Navbar style={{ color: "white" }} expand="lg">
-      <Container>
-        <Link to="/">
-          {" "}
-          <Navbar.Brand style={{ color: "white" }} href="">
-            Join The Band
-          </Navbar.Brand>
-        </Link>
-
-        {!isLoggedIn ? (
-          <>
-            <Link to="/login">
-              {" "}
-              <Navbar.Brand style={{ color: "white" }} href="login">
-                Log In
-              </Navbar.Brand>
-            </Link>
-            <Link to="/signup">
-              {" "}
-              <Navbar.Brand style={{ color: "white" }} href="signup">
-                Sign Up
-              </Navbar.Brand>
-            </Link>
+    <Navbar className="navbar" bg="black" variant="dark" expand="lg">
+      <Navbar.Brand as={Link} to="/">
+        Join The Band
+      </Navbar.Brand>
+      <Navbar.Toggle aria-controls="basic-navbar-nav" onClick={toggleMenu}>
+        <FontAwesomeIcon icon={faBars} />
+      </Navbar.Toggle>
+      <Navbar.Collapse id="basic-navbar-nav">
+        <Nav className="ml-auto">
+          <Nav.Link onClick={toggleMenu} as={Link} to="/">
+            Home
+          </Nav.Link>
+          {isLoggedIn ? 
+            <>
+          <Nav.Link onClick={toggleMenu} as={Link} to="/profiles">
+            <FontAwesomeIcon icon={faUser} /> Profiles
+          </Nav.Link>
+          <Nav.Link onClick={toggleMenu} as={Link} to="/edit-profile">
+            <FontAwesomeIcon icon={faEdit} /> Edit Profile
+          </Nav.Link>
+          <Nav.Link as={Link} to="/" onClick={handleLogout}>
+            <FontAwesomeIcon icon={faSignOutAlt} /> Log Out
+            </Nav.Link>
+            </> : 
+            <>
+            <Nav.Link as={Link} to="/login">Log In</Nav.Link>
+            <Nav.Link as={Link} to="/signup">Sign Up</Nav.Link>
           </>
-        ) : (
-          <>
-            <Link to="/">
-              {" "}
-              <Navbar.Brand
-                onClick={handleLogout}
-                style={{ color: "white" }}
-                href="signup"
-              >
-                Log out
-              </Navbar.Brand>
-            </Link>
-            {/* <Link to="/edit-profile"><Navbar.Brand style={{ color: "white" }}>Edit Profile</Navbar.Brand></Link> */}
-            <Link to="/profiles">
-              {" "}
-              <Navbar.Brand style={{ color: "white" }}>Profiles</Navbar.Brand>
-              </Link>
-              <Link to="/edit-profile">
-              <Navbar.Brand style={{ color: "white" }}>Edit Profile</Navbar.Brand>
-            </Link>
-          </>
-        )}
-
-        <Navbar.Toggle aria-controls="basic-navbar-nav" />
-      </Container>
+          }
+        </Nav>
+      </Navbar.Collapse>
     </Navbar>
   );
-}
+};
+
 export default Header;
