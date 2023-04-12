@@ -1,13 +1,18 @@
 import React, { useState, useEffect } from 'react';
 import { Form, Button } from 'react-bootstrap';
+import {  useHistory } from "react-router-dom";
 import { useSelector } from 'react-redux';
 import './EditProfileForm.css';
+import { useDispatch } from "react-redux";
+import { signOut } from "../../actions";
 
 function EditProfileForm({ user, setUser }) {
 
   const instruments = useSelector(state => state.instruments);
   const genres = useSelector(state => state.genres);
   const locations = useSelector(state => state.locations);
+  const dispatch = useDispatch();
+  const history = useHistory();
 
   const [name, setName] = useState(user.name);
   const [email, setEmail] = useState(user.email_address);
@@ -75,9 +80,25 @@ function EditProfileForm({ user, setUser }) {
     .catch(error => {
       console.error('There was a problem with the fetch operation:', error);
     });
-
-    
   }
+
+  
+  const handleDelete = () => {
+    fetch(`/api/users/${user.id}`, {
+      method: "DELETE"
+    })
+    .then(response => {
+      // handle response
+      dispatch(signOut());
+      setUser(null);
+      history.push("/");
+    })
+    .catch(error => {
+      // handle error
+      console.log(error);
+    });
+  };
+
   return (
     <div className="edit-profile-form">
     <Form onSubmit={handleSubmit}>
@@ -135,6 +156,10 @@ function EditProfileForm({ user, setUser }) {
 
       <Button variant="primary" type="submit">Save</Button>
       </Form>
+
+      <Button variant="danger" onClick={handleDelete}>
+      Delete account
+    </Button>
     </div>
   );
 }
