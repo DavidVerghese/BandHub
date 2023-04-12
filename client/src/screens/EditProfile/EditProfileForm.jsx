@@ -75,7 +75,8 @@ function EditProfileForm({ user, setUser }) {
     })
     .then(data => {
       console.log('Updated user:', data);
-      setUser(updatedUser );
+      setUser(updatedUser);
+      history.push("/profiles");
     })
     .catch(error => {
       console.error('There was a problem with the fetch operation:', error);
